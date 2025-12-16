@@ -1,0 +1,152 @@
+/* --- 1. איפוס והגדרות בסיסיות --- */
+* {
+    /* קריטי: מבטיח שה-Padding וה-Border לא יגדילו את רוחב האלמנט */
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+}
+
+/* מאפיין בסיסי לכל הקופסאות */
+.box {
+    border: 3px solid red;
+    padding: 10px;
+    height: 100px; /* גובה בסיסי לקופסאות קטנות */
+    text-align: center;
+    line-height: 80px; /* ממורכז אנכית אם הגובה 100px */
+    font-size: 20px;
+}
+
+/* --- 2. פריסה ראשית (Desktop View - מעל 750px) --- */
+
+.container {
+    width: 100%;
+    /* משמש לניקוי ה-float-ים הפנימיים (Clearfix) */
+    overflow: hidden; 
+}
+
+/* סרגל צד שמאלי: מוצמד לשמאל (Float Left) */
+#left-sidebar {
+    float: left;
+    width: 200px;
+    min-height: 800px; /* גובה מינימלי למטרות פריסה */
+    background-color: #f0f0f0;
+    border: 3px solid red;
+    padding: 10px;
+    text-align: center;
+    line-height: initial; 
+}
+
+/* אזור תוכן ראשי: ממלא את השטח הנותר מימין (Float Right) */
+.content-area {
+    float: right;
+    width: calc(100% - 200px); 
+    overflow: hidden; /* מבטיח שהאלמנטים שבפנים לא "יברחו" החוצה */
+}
+
+
+/* --- 3. מיקום פנימי בתוך content-area --- */
+
+/* שורת 4 המלבנים העליונים (1, 2, 3, 4) */
+#header-row {
+    overflow: hidden;
+    height: 100px; 
+    margin-bottom: 10px; 
+}
+
+.top-box {
+    /* 4 קופסאות בשורה: מוצמדות ימינה (Float Right) כדי להתחיל מימין לשמאל */
+    float: right;
+    width: 25%; 
+    height: 100%;
+    border-right: 3px solid red; /* רווח ימני כפול עם הסרגל */
+}
+/* הסרת הגבול המיותר בקצה השמאלי ביותר */
+.top-box:first-child { 
+    /* אם אתה רוצה להסיר את הגבול בין 4 ל-Sidebar, הסר את border: 3px solid red ב-top-box */
+}
+
+/* קבוצת מלבנים אמצעיים שמאליים (5, 6) */
+.middle-row-left {
+    float: left; /* צף שמאלה */
+    width: 40%; 
+    margin-left: 10px; /* רווח מהקופסה מימין (7) */
+    height: 220px; 
+}
+
+.middle-box {
+    float: none; /* כל מלבן תופס שורה בתוך ה-40% */
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px; 
+}
+
+/* מלבן אמצעי ימני (7) */
+#middle-right {
+    float: right; /* צף ימינה ליד 5 ו-6 */
+    width: calc(60% - 10px); 
+    height: 220px; 
+    margin-bottom: 10px;
+}
+
+/* שורת מלבנים תחתונה (8, 9) - חייבת להתחיל מתחת לאלמנטים הצפים */
+#bottom-row {
+    clear: both; /* מתחיל מתחת לכל ה-float-ים שקדמו לו */
+    overflow: hidden;
+    height: 150px; 
+}
+
+#bottom-left {
+    float: right; /* מוצמד לימין השורה */
+    width: 70%; 
+    height: 150px;
+}
+
+#bottom-right {
+    float: left; /* מוצמד לשמאל השורה */
+    width: 30%; 
+    height: 150px;
+}
+
+
+/* --- 4. רספונסיביות: Media Query (רוחב 750px ומטה) --- */
+
+@media screen and (max-width: 750px) {
+    
+    /* איפוס אלמנטים ראשיים לרוחב מלא וביטול Float */
+    #left-sidebar, 
+    .content-area {
+        float: none; 
+        width: 100%; 
+        min-height: initial; 
+    }
+
+    /* איפוס כל המלבנים בתוך אזור התוכן לרוחב מלא */
+    .top-box,
+    .middle-row-left,
+    #middle-right,
+    #bottom-left,
+    #bottom-right {
+        float: none; 
+        width: 100%; 
+        margin-right: 0; 
+        margin-left: 0;
+        margin-bottom: 10px; /* רווח בין כל קופסה */
+    }
+    
+    /* איפוס קבוצות ראשיות */
+    #header-row,
+    #bottom-row,
+    .middle-row-left,
+    #middle-right {
+        height: auto; 
+    }
+    
+    /* ודא שגבולות עליונים ותחתונים מופרדים */
+    .top-box {
+        border-right: 3px solid red; /* מחזיר גבולות בצדדים */
+    }
+    
+    .middle-box {
+        margin-bottom: 10px;
+    }
+}

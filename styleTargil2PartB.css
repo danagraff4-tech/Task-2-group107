@@ -1,0 +1,81 @@
+/* CSS for Bibliophile Bookstore */
+
+/* Apply box-sizing to all elements */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 200px;
+    background-color: gray;
+    float: left;
+    height: 100vh; /* Full height */
+}
+
+/* Main content styles */
+.main-content {
+    float: left;
+    width: calc(100% - 200px);
+    padding: 20px;
+}
+
+/* Box styles */
+.box {
+    border: 3px solid red;
+    text-align: center;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+/* Top row styles */
+.top-row .box {
+    width: 24%; /* 25% - margin */
+    float: left;
+    margin-right: 1%; /* Space between boxes */
+}
+
+.top-row .box:nth-child(4) {
+    margin-right: 0; /* Remove margin for the last box */
+}
+
+/* Middle row styles */
+.middle-row {
+    overflow: hidden; /* Clear floats */
+}
+
+.middle-row .left-section {
+    width: 40%;
+    float: left;
+}
+
+.middle-row .right-section {
+    width: 60%;
+    float: left;
+}
+
+/* Bottom row styles */
+.bottom-row .box {
+    float: left;
+}
+
+.bottom-row .box:nth-child(1) {
+    width: 70%;
+}
+
+.bottom-row .box:nth-child(2) {
+    width: 30%;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 750px) {
+    .sidebar, .box, .main-content {
+        float: none;
+        width: 100%;
+    }
+}

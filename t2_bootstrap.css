@@ -1,0 +1,59 @@
+/* איפוס */
+body { 
+    padding: 20px; 
+    box-sizing: border-box; 
+}
+
+/* --- המסגרת החיצונית --- */
+.outer-frame {
+    border: 5px solid red; 
+    background-color: white;
+}
+
+/* --- עיצוב בסיסי (למחשב) --- */
+.content-col { 
+    padding: 15px; 
+}
+
+.box {
+    border: 3px solid red; 
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+/* ביטול רווח תחתון לאלמנטים אחרונים */
+.mb-0 { 
+    margin-bottom: 0 !important; 
+}
+
+/* --- גבהים למחשב --- */
+.h-small { min-height: 150px; }
+.h-thin { min-height: 110px; }
+.h-middle-big { min-height: 246px; } 
+.h-bottom { min-height: 150px; }
+
+/* --- הגדרות הסרגל (Sidebar) במצב רגיל --- */
+.sidebar-col {
+    border-right: 7px solid red; 
+    background-color: white;
+    min-height: 600px; 
+}
+
+/* ==========================================
+   MEDIA QUERY - מובייל (מתחת ל-768px)
+   ========================================== */
+@media screen and (max-width: 768px) {
+    
+    .sidebar-col {
+        /* השינוי שעושה את זה קו עבה: */
+        border: none;               /* מורידים מסגרת רגילה */
+        background-color: red;      /* ממלאים את כולו באדום */
+        min-height: 15px;           /* עובי הקו */
+        
+        width: 100%;                 
+    }
+
+    .content-col {
+        padding-top: 20px; 
+    }
+}
